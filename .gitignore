@@ -1,0 +1,11 @@
+.DS_Store
+.idea/
+.ipynb_checkpoints/
+plasticity_network/__pycache__/
+blablabla.ipynb
+mappings/
+mnist/
+nn.csv
+results/
+save the network.ipynb
+testing.ipynb
