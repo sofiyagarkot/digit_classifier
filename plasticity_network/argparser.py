@@ -25,7 +25,7 @@ def add_args(parser):
 def check_args(parser):
 
     if not os.path.isdir(parser.path_to_results + "/" + parser.experiment_name):
-        os.mkdir(parser.path_to_results)
+        os.mkdir(parser.path_to_results+ "/" + parser.experiment_name)
 
     parser.path_to_results = parser.path_to_results + "/" + parser.experiment_name
 

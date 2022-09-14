@@ -53,14 +53,6 @@ def read_mapping(path, pixel_index):
 
     return j
 
-
-def plot_one_neuron_spiking(cfg, monitor):
-    plt.figure(figsize=(30, 20))
-    plt.plot(monitor.t, monitor.v.T)
-    plt.title("Neuron 20 membrane voltage")
-    plt.savefig(cfg.path_to_visuals + "/300ms_neuron20.png")
-
-
 def plot_spiking_activity(cfg, monitor, name):
 
     plt.figure(figsize=(30, 20))
@@ -73,7 +65,21 @@ def plot_spiking_activity(cfg, monitor, name):
 
 def plot_tsne_clusters(cfg, point_cloud, classes):
 
-    plt.figure(figsize=(30, 30))
-    plt.scatter(point_cloud[:, 0], point_cloud[:, 1], c=classes)
+    fig, ax = plt.subplots(1, figsize=(14, 10))
+    plt.scatter(point_cloud[:, 0], point_cloud[:, 1], s=0.3, c=classes, cmap='Spectral', alpha=1.0)
+    plt.setp(ax, xticks=[], yticks=[])
+    cbar = plt.colorbar(boundaries=np.arange(11) - 0.5)
+    cbar.set_ticks(np.arange(10))
+    cbar.set_ticklabels(set(classes))
     plt.title("Clustered activity of inputs to the network")
     plt.savefig(cfg.path_to_visuals + "/tsne_inputs.png")
+
+def write_to_txt_file(filename, arr):
+
+    f = open(filename, 'a+')
+    f.write('\n')
+    f.write(" ".join(map(str, arr)))
+    f.close()
+
+# TODO: ISI-CV + STD on top of the monitored spike-times
+# TODO:
